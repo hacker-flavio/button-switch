@@ -1,25 +1,49 @@
 int buttonOnePin = 8;
 int buttonTwoPin = 9;
+int buttonOneState = HIGH; // Assuming buttons are not pressed initially
+int buttonTwoState = HIGH;
 
 void setup()
 {
-  // put your setup code here, to run once:
   Serial.begin(9600);
-  Serial.println("printing...");
+  Serial.println("Printing...");
   pinMode(buttonOnePin, INPUT_PULLUP);
   pinMode(buttonTwoPin, INPUT_PULLUP);
 }
 
 void loop()
 {
-  // put your main code here, to run repeatedly:
-  if (digitalRead(buttonOnePin) == LOW)
+  int newButtonOneState = digitalRead(buttonOnePin);
+  int newButtonTwoState = digitalRead(buttonTwoPin);
+
+  // Check if button one state has changed
+  if (newButtonOneState != buttonOneState)
   {
-    Serial.println("button one pressed");
+    if (newButtonOneState == LOW)
+    {
+      Serial.println("Button one pressed");
+    }
+    else
+    {
+      Serial.println("Button one released");
+    }
+    buttonOneState = newButtonOneState;
   }
-  if (digitalRead(buttonTwoPin) == LOW)
+
+  // Check if button two state has changed
+  if (newButtonTwoState != buttonTwoState)
   {
-    Serial.println("button two pressed");
+    if (newButtonTwoState == LOW)
+    {
+      Serial.println("Button two pressed");
+    }
+    else
+    {
+      Serial.println("Button two released");
+    }
+    buttonTwoState = newButtonTwoState;
   }
-  delay(200);
+  
+  // Add a small delay to avoid rapid changes
+  delay(50);
 }

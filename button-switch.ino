@@ -1,7 +1,7 @@
 int buttonOnePin = 8;
 int buttonTwoPin = 9;
-int buttonOneState = HIGH; // Assuming buttons are not pressed initially
-int buttonTwoState = HIGH;
+int buttonOneState = HIGH;
+int buttonTwoState = HIGH; // Assuming buttons are not pressed initially
 
 void setup()
 {
@@ -43,7 +43,7 @@ void loop()
     }
     buttonTwoState = newButtonTwoState;
   }
-  
+
   // Add a small delay to avoid rapid changes
   delay(50);
 }
